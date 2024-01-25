@@ -156,12 +156,12 @@ class ViewController: UIViewController {
 
     // MARK: - Image Picker
     func openImagePicker() {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             print("Device has no camera library.")
             return
         }
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
 
