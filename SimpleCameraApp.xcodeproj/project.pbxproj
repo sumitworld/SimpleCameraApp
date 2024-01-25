@@ -13,6 +13,7 @@
 		3CF22D9F2B5ED20C00B24235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF22D9D2B5ED20C00B24235 /* Main.storyboard */; };
 		3CF22DA12B5ED20E00B24235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CF22DA02B5ED20E00B24235 /* Assets.xcassets */; };
 		3CF22DA42B5ED20E00B24235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF22DA22B5ED20E00B24235 /* LaunchScreen.storyboard */; };
+		3CF22DAC2B61DD4000B24235 /* PhotoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF22DAB2B61DD4000B24235 /* PhotoEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3CF22DA02B5ED20E00B24235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CF22DA32B5ED20E00B24235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CF22DA52B5ED20E00B24235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CF22DAB2B61DD4000B24235 /* PhotoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				3CF22D972B5ED20C00B24235 /* AppDelegate.swift */,
 				3CF22D992B5ED20C00B24235 /* SceneDelegate.swift */,
+				3CF22DAB2B61DD4000B24235 /* PhotoEditor.swift */,
 				3CF22D9B2B5ED20C00B24235 /* ViewController.swift */,
 				3CF22D9D2B5ED20C00B24235 /* Main.storyboard */,
 				3CF22DA02B5ED20E00B24235 /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF22D9C2B5ED20C00B24235 /* ViewController.swift in Sources */,
+				3CF22DAC2B61DD4000B24235 /* PhotoEditor.swift in Sources */,
 				3CF22D982B5ED20C00B24235 /* AppDelegate.swift in Sources */,
 				3CF22D9A2B5ED20C00B24235 /* SceneDelegate.swift in Sources */,
 			);
@@ -292,8 +296,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RTC529NP8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleCameraApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to take photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save and retrieve photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save and retrieve photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -319,8 +327,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RTC529NP8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleCameraApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to take photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save and retrieve photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save and retrieve photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
