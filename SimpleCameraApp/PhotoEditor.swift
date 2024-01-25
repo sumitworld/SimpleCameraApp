@@ -62,21 +62,53 @@ class PhotoEditor: NSObject {
         view.addGestureRecognizer(panGesture)
     }
 
+    // issue for rotate
+//    func applyFilter(filterName: String) {
+//        guard let originalImage = imageView.image else { return }
+//        guard let ciImage = CIImage(image: originalImage) else { return }
+//
+//        let filter = CIFilter(name: filterName)
+//        filter?.setValue(ciImage, forKey: kCIInputImageKey)
+//
+//        if let outputCIImage = filter?.outputImage {
+//            let context = CIContext(options: nil)
+//            if let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) {
+//                let filteredImage = UIImage(cgImage: outputCGImage)
+//                imageView.image = filteredImage
+//            }
+//        }
+//    }
+    
+    // fixed the issue
     func applyFilter(filterName: String) {
         guard let originalImage = imageView.image else { return }
         guard let ciImage = CIImage(image: originalImage) else { return }
-
+        
         let filter = CIFilter(name: filterName)
         filter?.setValue(ciImage, forKey: kCIInputImageKey)
-
+        
         if let outputCIImage = filter?.outputImage {
             let context = CIContext(options: nil)
+            
+            // Get the original image's orientation
+            let originalOrientation = originalImage.imageOrientation
+            
+            // Create a CGImage from the filtered CIImage
             if let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) {
-                let filteredImage = UIImage(cgImage: outputCGImage)
+                // Create a UIImage from the CGImage
+                var filteredImage = UIImage(cgImage: outputCGImage, scale: originalImage.scale, orientation: originalOrientation)
+                
+                // Ensure that the orientation is preserved
+                if originalOrientation != .up {
+                    filteredImage = filteredImage.fixedOrientation()
+                }
+                
+                // Update the imageView with the filtered image
                 imageView.image = filteredImage
             }
         }
     }
+    
     
     func renderImageView() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0.0)
@@ -150,5 +182,4 @@ extension PhotoEditor {
         gesture.setTranslation(CGPoint.zero, in: imageView)
     }
 }
-
 

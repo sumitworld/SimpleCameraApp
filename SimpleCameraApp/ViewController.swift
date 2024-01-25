@@ -7,7 +7,6 @@
 
 import AVFoundation
 import UIKit
-import Photos
 
 class ViewController: UIViewController {
 
@@ -33,6 +32,8 @@ class ViewController: UIViewController {
 
     // MARK: - UI Setup
     func setupUI() {
+        imageView.image = nil
+        imageView.subviews.forEach { $0.removeFromSuperview() }
         closeButton.isHidden = true
         editPhotoButton.isHidden = true
         saveButton.isHidden = true
@@ -41,11 +42,11 @@ class ViewController: UIViewController {
 
     // MARK: - Button Actions
     @IBAction func takePhotoButtonTapped(_ sender: UIButton) {
+        setupUI()
         requestCameraPermission()
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
-        imageView.image = nil
         setupUI()
     }
 
@@ -58,62 +59,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func savePhotoButtonTapped(_ sender: UIButton) {
-        checkPhotoLibraryPermissionAndSavePhoto()
-    }
-
-    // MARK: - Photo Library Permission
-    func checkPhotoLibraryPermissionAndSavePhoto() {
-        let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .authorized:
-            // Photo library access already granted, save the photo
-            photoEditor?.savePhoto()
-        case .denied, .restricted:
-            // Photo library access denied or restricted, prompt the user to grant access
-            showPhotoLibraryPermissionAlert()
-        case .notDetermined:
-            // Photo library access not determined, request permission
-            requestPhotoLibraryPermission()
-        case .limited:
-            photoEditor?.savePhoto()
-        @unknown default:
-            break
-        }
-    }
-
-    func requestPhotoLibraryPermission() {
-        PHPhotoLibrary.requestAuthorization { [weak self] newStatus in
-            if newStatus == .authorized {
-                // Permission granted, save the photo
-                DispatchQueue.main.async {
-                    self?.photoEditor?.savePhoto()
-                }
-            } else {
-                // Permission not granted, inform the user
-                print("Photo library permission not granted.")
-            }
-        }
-    }
-
-    func showPhotoLibraryPermissionAlert() {
-        let alertController = UIAlertController(
-            title: "Photo Library Permission",
-            message: "This app needs access to your photo library. Please enable photo library access in Settings.",
-            preferredStyle: .alert
-        )
-
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(settingsURL)
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        alertController.addAction(settingsAction)
-        alertController.addAction(cancelAction)
-
-        present(alertController, animated: true, completion: nil)
+        photoEditor?.savePhoto()
     }
 
     // MARK: - Camera Permission
